@@ -1,0 +1,57 @@
+// Server side build.gradle
+// Builds the server side of the project
+
+plugins {
+  // Apply the java plugin to add support for Java
+  id 'java'
+
+  // Apply the application plugin to add support for building a CLI application
+  id 'application'
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+  // Use jcenter for resolving your dependencies.
+  // You can declare any Maven/Ivy/file repository here.
+  jcenter()
+}
+
+// The class where our server is located
+mainClassName = 'umm3601.Server'
+
+// External dependencies that our application utilizes
+dependencies {
+  // Google core libraries for Java, various useful utilities
+  implementation 'com.google.guava:guava:28.0-jre'
+
+  // Spark web framework
+  implementation 'com.sparkjava:spark-core:2.6.0'
+
+  // Simple Logging Facade for Java
+  implementation 'org.slf4j:slf4j-simple:1.7.30'
+
+  implementation 'com.google.code.gson:gson:2.8.6'
+
+  // JUnit Jupiter API for testing.
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+
+  // JUnit Jupiter Engine for testing.
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+}
+
+application {
+  // Define the main class for the application
+  mainClassName = 'umm3601.Server'
+}
+
+test {
+  // Use junit platform for unit tests
+  useJUnitPlatform()
+}
+
+// We want our source code to be compatible with Java 1.8
+sourceCompatibility = '1.8'
+
+wrapper {
+  distributionType = Wrapper.DistributionType.ALL
+}

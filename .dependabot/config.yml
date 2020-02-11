@@ -1,0 +1,8 @@
+# Dependabot config file
+# https://dependabot.com/docs/config-file/
+version: 1
+update_configs:
+  # Keep server/build.gradle up to date, batching pull requests weekly
+  - package_manager: "java:gradle"
+    directory: "/server"
+    update_schedule: "weekly"

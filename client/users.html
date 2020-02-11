@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" type="text/css" href="css/users.css">
+  <script type="text/javascript" src="javascript/util.js"></script>
+  <script type="text/javascript" src="javascript/users.js"></script>
+</head>
+<body>
+<button type="button" id="getAll">Get All Users</button>
+
+<hr/>
+
+<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
+
+<label for="age">age:</label><input id="age" type="text" name="age">
+<button type="button" id="getUsersByAge"> get users by age</button>
+
+<script>
+  window.onload = function () {
+    console.log("The page is loaded now!");
+
+    var element = document.getElementById('getAll');
+    element.addEventListener("click", getAllUsers, true);
+
+    element = document.getElementById('getUsersByAge');
+    element.addEventListener("click", getAllUsersByAge, true);
+  }
+</script>
+</body>
+</html>
