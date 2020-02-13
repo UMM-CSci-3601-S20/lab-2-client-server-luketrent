@@ -53,6 +53,9 @@ public class Server {
 
     // List all the todos in the groceries category
     server.get("api/todos?category=groceries", ctx -> todoController.getTodos(ctx));
+
+    // List seven todos from the list
+    server.get("api/todos?limit=7", ctx -> todoController.getTodos(ctx));
   }
 
   /***

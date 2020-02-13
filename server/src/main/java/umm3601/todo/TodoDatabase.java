@@ -50,7 +50,11 @@ private boolean targetStatus;
       String targetCategory = queryParams.get("category").get(0);
       filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
-    
+    // Filters number of todos if defined
+    if (queryParams.containsKey("limit")) {
+      int targetLimit = Integer.parseInt(queryParams.get("limit").get(0));
+      filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
+    }
     return filteredTodos;
   }
 
@@ -70,4 +74,7 @@ private boolean targetStatus;
     return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
 
+  public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
+    return Arrays.copyOfRange(Arrays.stream(todos).toArray(Todo[]::new), 0, targetLimit);
+  }
 }
