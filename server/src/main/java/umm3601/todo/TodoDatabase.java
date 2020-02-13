@@ -40,6 +40,11 @@ private boolean targetStatus;
       String targetBody = queryParams.get("body").get(0);
       filteredTodos = filterTodosByBody(filteredTodos, targetBody);
     }
+    // Filter owner if defined
+    if (queryParams.containsKey("owner")) {
+        String targetOwner = queryParams.get("owner").get(0);
+        filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
+    }
 
     return filteredTodos;
   }
@@ -50,6 +55,10 @@ private boolean targetStatus;
 
   public Todo[] filterTodosByBody(Todo[] todos, String targetBody) {
     return Arrays.stream(todos).filter(x -> x.body.equals(targetBody)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
+    return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
   }
 
 }

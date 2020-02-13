@@ -47,6 +47,9 @@ public class Server {
 
     // List all the todos
     server.get("api/todos", ctx -> todoController.getTodos(ctx));
+
+    // List all the todos owned by Blanche
+    server.get("api/todos?owner=Blanche", ctx -> todoController.getTodos(ctx));
   }
 
   /***
