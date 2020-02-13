@@ -50,6 +50,9 @@ public class Server {
 
     // List all the todos owned by Blanche
     server.get("api/todos?owner=Blanche", ctx -> todoController.getTodos(ctx));
+
+    // List all the todos in the groceries category
+    server.get("api/todos?category=groceries", ctx -> todoController.getTodos(ctx));
   }
 
   /***

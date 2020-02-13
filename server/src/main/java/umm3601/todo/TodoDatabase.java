@@ -42,10 +42,15 @@ private boolean targetStatus;
     }
     // Filter owner if defined
     if (queryParams.containsKey("owner")) {
-        String targetOwner = queryParams.get("owner").get(0);
-        filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
+      String targetOwner = queryParams.get("owner").get(0);
+      filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
-
+    // Filter category if defined
+    if (queryParams.containsKey("category")) {
+      String targetCategory = queryParams.get("category").get(0);
+      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
+    }
+    
     return filteredTodos;
   }
 
@@ -59,6 +64,10 @@ private boolean targetStatus;
 
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {
     return Arrays.stream(todos).filter(x -> x.owner.equals(targetOwner)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
+    return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
 
 }
