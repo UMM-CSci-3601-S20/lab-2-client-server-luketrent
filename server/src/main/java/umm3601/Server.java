@@ -56,6 +56,9 @@ public class Server {
 
     // List seven todos from the list
     server.get("api/todos?limit=7", ctx -> todoController.getTodos(ctx));
+
+    // Lists the todos that contain banana
+    server.get("api/todos?contains=banana", ctx -> todoController.getTodos(ctx));
   }
 
   /***

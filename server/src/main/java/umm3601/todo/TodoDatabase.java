@@ -36,8 +36,8 @@ private boolean targetStatus;
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
     // Filter body if defined
-    if (queryParams.containsKey("body")) {
-      String targetBody = queryParams.get("body").get(0);
+    if (queryParams.containsKey("contains")) {
+      String targetBody = queryParams.get("contains").get(0);
       filteredTodos = filterTodosByBody(filteredTodos, targetBody);
     }
     // Filter owner if defined
