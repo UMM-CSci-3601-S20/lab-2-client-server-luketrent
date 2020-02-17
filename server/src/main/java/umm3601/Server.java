@@ -59,6 +59,9 @@ public class Server {
 
     // Lists the todos that contain banana
     server.get("api/todos?contains=banana", ctx -> todoController.getTodos(ctx));
+
+    // Lists all of the complete todos
+    server.get("api/todos?status=complete", ctx -> todoController.getTodos(ctx));
   }
 
   /***

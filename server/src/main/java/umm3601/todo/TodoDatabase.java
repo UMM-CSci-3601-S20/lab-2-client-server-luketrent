@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 public class TodoDatabase {
 
   private Todo[] allTodos;
-private boolean targetStatus;
 
   public TodoDatabase(String todoDataFile) throws IOException {
     Gson gson = new Gson();
@@ -32,7 +31,12 @@ private boolean targetStatus;
 
     // Filter status if defined
     if (queryParams.containsKey("status")) {
-      targetStatus = Boolean.parseBoolean(queryParams.get("status").get(0));
+      Boolean targetStatus;
+      System.out.println(queryParams.get("status").get(0));
+      if (queryParams.get("status").get(0).equals("complete"))
+        targetStatus = true;
+      else
+        targetStatus = false;
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
     // Filter body if defined
