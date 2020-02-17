@@ -97,10 +97,8 @@ public class TodoDatabase {
     else if(targetOrder.equals("body")){
       return Arrays.stream(todos).sorted((x1, x2) -> x1.body.compareTo(x2.body)).toArray(Todo[]::new);
     }
-    else if(targetOrder.equals("status")){
+    else{
       return Arrays.stream(todos).sorted((x1, x2) -> String.valueOf(x1.status).compareTo(String.valueOf(x2.status))).toArray(Todo[]::new);
     }
-    else
-      return null;
   }
 }
