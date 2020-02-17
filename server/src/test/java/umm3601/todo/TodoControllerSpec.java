@@ -2,6 +2,7 @@ package umm3601.todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -140,8 +141,10 @@ public class TodoControllerSpec {
     // Confirm that all the todos passed to `json` are sorted.
     ArgumentCaptor<Todo[]> argument = ArgumentCaptor.forClass(Todo[].class);
     verify(ctx).json(argument.capture());
+    String s = "";
     for (Todo todo : argument.getValue()) {
-      assertEquals(todo.category, todo.category);
+      assertTrue(todo.category.compareTo(s) >= 0);
+      s = todo.category;
     }
   }
 
@@ -158,8 +161,10 @@ public class TodoControllerSpec {
     // Confirm that all the todos passed to `json` are sorted.
     ArgumentCaptor<Todo[]> argument = ArgumentCaptor.forClass(Todo[].class);
     verify(ctx).json(argument.capture());
+    String s = "";
     for (Todo todo : argument.getValue()) {
-      assertEquals(todo.owner, todo.owner);
+      assertTrue(todo.owner.compareTo(s) >= 0);
+      s = todo.owner;
     }
   }
 
@@ -176,8 +181,10 @@ public class TodoControllerSpec {
     // Confirm that all the todos passed to `json` are sorted.
     ArgumentCaptor<Todo[]> argument = ArgumentCaptor.forClass(Todo[].class);
     verify(ctx).json(argument.capture());
+    String s = "";
     for (Todo todo : argument.getValue()) {
-      assertEquals(todo.body, todo.body);
+      assertTrue(todo.body.compareTo(s) >= 0);
+      s = todo.body;
     }
   }
 
@@ -194,8 +201,10 @@ public class TodoControllerSpec {
     // Confirm that all the todos passed to `json` are sorted.
     ArgumentCaptor<Todo[]> argument = ArgumentCaptor.forClass(Todo[].class);
     verify(ctx).json(argument.capture());
+    String s = "";
     for (Todo todo : argument.getValue()) {
-      assertEquals(todo.status, todo.status);
+      assertTrue(Boolean.toString(todo.status).compareTo(s) >= 0);
+      s = Boolean.toString(todo.status);
     }
   }
 
