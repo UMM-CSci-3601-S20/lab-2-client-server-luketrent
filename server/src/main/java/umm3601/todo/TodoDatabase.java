@@ -72,7 +72,7 @@ public class TodoDatabase {
   }
 
   public Todo[] filterTodosByBody(Todo[] todos, String targetBody) {
-    return Arrays.stream(todos).filter(x -> x.body.equals(targetBody)).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.body.toLowerCase().indexOf(targetBody.toLowerCase()) != -1).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByOwner(Todo[] todos, String targetOwner) {

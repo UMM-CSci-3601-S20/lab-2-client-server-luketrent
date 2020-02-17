@@ -1,6 +1,7 @@
 package umm3601.todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -216,6 +217,24 @@ public class TodoControllerSpec {
       x++;
     }
     assertEquals(x, 5);
+  }
+
+  //Tests all todos that contain sunt
+  @Test
+  public void GET_to_request_body_sunt_todos() throws IOException {
+  
+    Map<String, List<String>> queryParams = new HashMap<>();
+    queryParams.put("contains", Arrays.asList(new String[] { "sunt" }));
+  
+    when(ctx.queryParamMap()).thenReturn(queryParams);
+    todoController.getTodos(ctx);
+
+    // Confirm that all the todos passed to `json` are sorted.
+    ArgumentCaptor<Todo[]> argument = ArgumentCaptor.forClass(Todo[].class);
+    verify(ctx).json(argument.capture());
+    for (Todo todo : argument.getValue()) {
+      assertFalse(todo.body.toLowerCase().indexOf("sunt") == -1);
+    }
   }
   //Tests todos that have blanche as owner and category as homework
   @Test
