@@ -59,6 +59,11 @@ public class TodoDatabase {
       int targetLimit = Integer.parseInt(queryParams.get("limit").get(0));
       filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
+    // Filters by order
+    if (queryParams.containsKey("orderBy")) {
+      String targetOrder = queryParams.get("orderBy").get(0);
+      filteredTodos = filterTodosByOrder(filteredTodos, targetOrder);
+    }
     return filteredTodos;
   }
 
@@ -80,5 +85,22 @@ public class TodoDatabase {
 
   public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
     return Arrays.copyOfRange(Arrays.stream(todos).toArray(Todo[]::new), 0, targetLimit);
+  }
+
+  public Todo[] filterTodosByOrder(Todo[] todos, String targetOrder) {
+    if(targetOrder.equals("owner")){
+      return Arrays.stream(todos).sorted((x1, x2) -> x1.owner.compareTo(x2.owner)).toArray(Todo[]::new);
+    }
+    else if(targetOrder.equals("category")){
+      return Arrays.stream(todos).sorted((x1, x2) -> x1.category.compareTo(x2.category)).toArray(Todo[]::new);
+    }
+    else if(targetOrder.equals("body")){
+      return Arrays.stream(todos).sorted((x1, x2) -> x1.body.compareTo(x2.body)).toArray(Todo[]::new);
+    }
+    else if(targetOrder.equals("status")){
+      return Arrays.stream(todos).sorted((x1, x2) -> String.valueOf(x1.status).compareTo(String.valueOf(x2.status))).toArray(Todo[]::new);
+    }
+    else
+      return null;
   }
 }
